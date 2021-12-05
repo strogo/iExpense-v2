@@ -25,7 +25,8 @@ struct ContentView: View {
                         
                         Spacer()
                         
-                        Text(item.amount, format: .currency(code: "EUR"))
+                        Text(item.amount, format: .currency(code: Locale.current.currencyCode ?? "EUR"))
+                            .foregroundColor(colorStyle(amount: item.amount))
                         
                     }
                 }
@@ -49,6 +50,17 @@ struct ContentView: View {
     func removeItems(at offsets: IndexSet) {
         expenses.items.remove(atOffsets: offsets)
     }
+    
+    func colorStyle(amount: Double) -> Color? {
+        var col: Color = .black
+        
+        if amount >= 100 { col = .red }
+        else if amount <= 10 { col = .green }
+        else { col = .black }
+        
+        return col
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

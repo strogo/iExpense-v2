@@ -28,7 +28,7 @@ struct AddView: View {
                     }
                 }
                 
-                TextField("Amount", value: $amount, format: .currency(code: "EUR"))
+                TextField("Amount", value: $amount, format: .currency(code: Locale.current.currencyCode ?? "EUR"))
                     .keyboardType(.decimalPad)
             }
             
